@@ -1,0 +1,470 @@
+class-4 -----------------------------------------------------------------------------
+
+
+#!/bin/bash
+echo "this is class 4"
+
+echo ..............
+echo .............
+echo $0 $1 $2
+args=("$@")
+echo ${args[0]} ${args[1]}
+echo $@
+echo $#
+
+echo .............
+echo .............
+
+
+
+class-5----------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+
+echo ----------------------
+count="raj"
+if [ "$count" == "rajaaaa" ]
+then
+    echo "the statement a is true"
+elif [ "$count" == "raj" ]
+then
+    echo "the statement b is true"
+
+else
+    echo "the statement is false"
+fi
+echo ---------------------
+
+
+class-6----------------------------------------------------------------------------------------
+
+
+
+#!/bin/bash
+
+echo -------------
+echo -e "please enter the file name: \c"
+read "file_name"
+if [ -x $file_name ]
+then
+  echo "$file_name is there"
+else
+  echo "$file_name is not there"
+fi
+echo -------------
+
+
+class-7--------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+
+echo -e "enter the name of the file: \c"
+ read file_name
+
+if [ -f $file_name ]
+ then
+  if [ -w $file_name ]
+   then
+     echo "type some text data or to quit ctrl+d"
+     cat >> $file_name
+      else
+        echo "the file do not have write permission"
+        fi
+      else
+        echo "$file_name not exist"
+        fi
+
+
+class-10--------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+
+num1=20
+num2=5
+
+echo $(expr $num1 + $num2 )
+echo $(( num1 - num2 ))
+echo $( expr $num1 * $num2 )
+echo $(( num1 / num2 ))
+echo $(( num1 % num2 ))
+
+
+class-11--------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+
+num1=20.5
+num2=5
+
+echo "20.5+5" | bc
+echo "20.5-5" | bc
+echo "20.5*5" | bc
+echo "scale=2;$num1/$num2" | bc
+echo "20.5%5" | bc
+
+
+class-12-----------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+echo -----------------------
+
+vehicle=$1
+
+case $vehicle in
+        "car" )
+             echo "rent of $vehicle is 100 dollar" ;;
+        "van" )
+             echo "rent of $vehicle is 50 dollar" ;;
+        "scooter" )
+             echo "rent of $vehicle is 20 dollar" ;;
+        "bicycle" )
+             echo "rent of $vehicle is 100 dollar" ;;
+        * )
+            echo "unknown vehicle" ;;
+esac
+
+
+class-13-------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+
+echo -e "enter some value: \c"
+read value
+
+case $value in
+        [a-z] )
+             echo "user entered $value a to z" ;;
+        [A-Z] )
+             echo "user entered $value A to Z" ;;
+        [0-9] )
+             echo "user entered $value 0 to 9" ;;
+        ? )
+             echo "user entered $value special charecter" ;;
+        * )
+            echo "unknown charecter" ;;
+esac
+
+
+class-14------------------------------------------------------------------------------------------
+
+
+
+#!/bin/bash
+
+os=('ubuntu' 'linux' 'mac')
+os[0]='redhat'
+os[6]='windows'
+
+
+#unset os[1]
+echo ${os[@]}
+echo ${os[0]}
+echo ${!os[@]}
+echo ${#os[@]}
+
+#string1=('asdkfjhalk ksursdfgtha')
+string2=asdkfjhalk
+echo ${string2[@]}
+echo ${string1[0]}
+
+
+class-15------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+#while loops:
+#this while loops are used to execute list of commands repeatedly,>
+
+#while [ condition ]
+#do
+#         command1
+#         command2
+#         command3
+#done
+
+
+n=1
+
+while [ $n -le 100 ]
+do
+    echo "$n"
+     n=$(( n+2 ))
+done
+
+#(( n++ ))
+#(( ++n ))
+
+
+class-16----------------------------------------------------------------------------------------
+
+
+
+#!/bin/bash
+#while loop part2
+n=1
+
+
+while [ $n -le 1 ]
+do
+       echo $n
+        (( n++ ))
+       sleep 1
+done
+
+#gnome-terminal &
+#xterm &
+# sleep1 command uses for pausing for 1 sec of loop if i want 2 sec we can give 2 sec
+
+
+class-17------------------------------------------------------------------------------------------
+
+
+
+#!/bin/bash
+#while loops part-3
+
+
+
+while read p
+do
+   echo $p
+done < class-16
+
+#second way
+
+cat class-16 | while read p
+do
+   echo $p
+done
+
+
+class-18---------------------------------------------------------------------------------------
+
+#!/bin/bash
+#this is also same as while loop but  until loop negitive
+#only executes when until statement is false
+
+
+n=1
+
+until [ $n -ge 10 ]
+do
+    echo "$n"
+     n=$(( n+1 ))
+done
+
+#another way is
+
+n=1
+
+until(( $n > 10 ))
+do
+    echo "$n"
+     n=$(( n+2 ))
+done
+
+#we can use (( n++ ))
+
+class-19----------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+for i in  1 2 3 4 5
+do
+    echo $i
+done
+
+#another case  for longer case
+
+echo $BASH_VERSION
+for i in {0..10..3}
+do
+     echo $i
+done
+
+#another case for seperate cases
+
+for (( i=0; i<5; i++ ))
+do
+   echo $i
+done
+
+#i=0 starting whit
+#i,5 wheather the value is lessthan 5 or not checking
+#i++ incrementing the value
+
+class-20-------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+for command in ls pwd date
+do
+     echo "--------$command---------"
+     $command
+done
+
+#another case using if in for loop
+
+for item in *
+do
+   if [ -d $item ]
+   then
+    echo $item
+   fi
+done
+#in the above case * is for iterating the script
+
+
+class-21----------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
+select name in mark john tom ben
+do
+  echo "$name selected"
+done
+
+#another case for the same statement
+#this time we use case statement for the select loop
+
+select name in mark john tom ben
+do
+        case $name in
+          mark)
+           echo mark selected ;;
+          john)
+           echo john selected ;;
+          tom)
+           echo tom selected ;;
+          ben)
+           echo ben selected ;;
+          *)
+           echo error ;;
+         esac
+done
+
+class-22-----------------------------------------------------------------------------------------------
+
+#!/bin/bash
+#this is a break statement and continue statement using for loop
+
+for (( i=1 ; i<=10 ; i++ ))
+do
+    if [ $i -gt 5 ]
+    then
+      break
+    fi
+      echo "$i"
+done
+
+
+#this is for continue operation
+for (( i=1 ; i<=10 ; i++ ))
+do
+    if [ $i -eq 3 -o $i -eq 6 ]
+    then
+      continue
+    fi
+      echo "$i"
+done
+
+class-23------------------------------------------------------------------------------------------------------------
+
+#!/bin/bash
+#functions and their uses
+
+function hello(){
+  echo "hello"
+}
+quit () {
+    exit
+}
+hello
+quit
+echo "food"
+
+#where ever you give quit it will stop functions upto it
+#another case to use function quit
+
+function print(){
+   echo $1 $2 $3
+}
+quit () {
+    exit
+}
+print hello world
+echo "food"
+quit
+
+class-24------------------------------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+# this is for printing the varisblrs using BEFORE and AFTER
+
+function print(){
+    name=$1
+     echo "the name is $name"
+}
+name="tom"
+
+echo "the name is $name : Before"
+
+print max
+
+echo "the name is $name : After"
+
+
+class-25-----------------------------------------------------------------------------------------------------------------
+
+
+#!/bin/bash
+#this is for finding a file weather it is there locally or not
+
+usage() {
+   echo "you need to provide an argument : "
+   echo "usage : $0 file_name"
+}
+
+is_file_exist() {
+  local file="$1"
+  [[ -f "$file" ]] && return 0 || return 1
+}
+
+[[ $# -eq 0 ]] && usage
+
+if ( is_file_exist "$1" )
+then
+   echo "file found"
+else
+   echo "file not found"
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
